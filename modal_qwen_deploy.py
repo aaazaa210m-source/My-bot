@@ -11,7 +11,7 @@ Before using:
 - Make sure you have the legal right to download and run the model. Accept any gated HF license.
 - Add your HF token as a Modal secret named `HF_TOKEN` (see instructions below) or set env HF_TOKEN locally.
 - Replace the CUDA PyTorch image with one that matches the Modal GPU CUDA version if needed.
-- Ensure your Modal account can request the desired GPU (A100/other). This script requests gpu="any"; change if you need a specific SKU.
+- Ensure your Modal account can request the desired GPU (A100/other). This script requests gpu="A100-40"; change if you need a different SKU.
 
 Quick run steps (summary):
 1) Set HF token locally and run the downloader once (or configure Modal secret and call the local entrypoint):
@@ -89,7 +89,7 @@ def download_model(model_name: str = DEFAULT_MODEL):
     shared_volumes={MODEL_MOUNT_PATH: volume},
     is_web_endpoint=True,
     # Request a GPU; adjust if you want a specific SKU. Modal will pick an available GPU.
-    gpu="any",
+    gpu="A100-40",
     keep_warm=1,
     timeout=60 * 10,
 )
